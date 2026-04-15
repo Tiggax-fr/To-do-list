@@ -1,0 +1,333 @@
+/* =========================
+   Reset Básico
+========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* =========================
+   Variáveis
+========================= */
+:root {
+  --bg: #f4f4f4;
+  --surface: #dbbaee;
+  --surface-muted: #f8fafc;
+  --text: #8C3DFF;
+  --text-muted: #64748b;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --success: #10b981;
+  --success-hover: #059669;
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  --border: #e2e8f0;
+  --shadow-soft: 0 12px 32px rgba(15, 23, 42, 0.08);
+  --shadow-hover: 0 16px 36px rgba(15, 23, 42, 0.12);
+
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 10px;
+
+  --font-main: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* =========================
+   Base
+========================= */
+body {
+  display: grid;
+  place-items: center;
+  padding: 2rem 1rem;
+  background: radial-gradient(circle at top right, #eaf2ff 0%, var(--bg) 45%);
+  color: var(--text);
+  font-family: var(--font-main);
+}
+
+.todo-app {
+  width: min(920px, 100%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: 2rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* =========================
+   Header
+========================= */
+.todo-app__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.todo-app__title {
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.todo-app__subtitle {
+  margin-top: 0.35rem;
+  color: var(--text-muted);
+  font-size: 0.96rem;
+}
+
+.todo-app__counter {
+  background: var(--surface-muted);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+/* =========================
+   Formulário
+========================= */
+.todo-form {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.todo-form__label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.todo-form__controls {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.todo-form__input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--border);
+  background: var(--surface-muted);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  font-size: 0.98rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.todo-form__input::placeholder {
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.todo-form__input:focus {
+  border-color: var(--primary);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+}
+
+/* =========================
+   Botões
+========================= */
+.button {
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 0.95rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  transition: transform 180ms ease, filter 180ms ease, box-shadow 180ms ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button--primary {
+  background: var(--text);
+  box-shadow: 0 10px 18px rgba(37, 99, 235, 0.2);
+}
+
+.button--primary:hover {
+  background: #6202fd;
+}
+
+.button--success {
+  background: var(--success);
+}
+
+.button--success:hover {
+  background: var(--success-hover);
+}
+
+.button--danger {
+  background: var(--danger);
+}
+
+.button--danger:hover {
+  background: var(--danger-hover);
+}
+
+/* =========================
+   Lista
+========================= */
+.todo-app__list-section {
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+.todo-list {
+  list-style: none;
+  display: grid;
+  gap: 0.85rem;
+  max-height: 420px;
+  overflow: auto;
+  padding-right: 0.25rem;
+}
+
+.todo-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+  animation: item-enter 360ms ease both;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.todo-item:hover {
+  border-color: var(--text);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-1px);
+}
+
+.todo-item__text {
+  font-size: 0.98rem;
+  font-weight: 500;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.todo-item__actions {
+  display: flex;
+  gap: 0.55rem;
+  flex-shrink: 0;
+}
+
+.completed .todo-item__text {
+  text-decoration: line-through;
+  opacity: 0.55;
+  color: var(--surface-muted);
+}
+
+.completed {
+  background: #A78CB0;
+}
+
+/* =========================
+   Scrollbar
+========================= */
+.todo-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.todo-list::-webkit-scrollbar-track {
+  background: #edf2f7;
+  border-radius: 999px;
+}
+
+.todo-list::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+  border: 2px solid #edf2f7;
+}
+
+.todo-list::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* =========================
+   Animação
+========================= */
+@keyframes item-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   Responsividade
+========================= */
+@media (max-width: 900px) {
+  .todo-app {
+    padding: 1.4rem;
+  }
+
+  .todo-item {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 1rem 0.75rem;
+  }
+
+  .todo-app__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .todo-form__controls {
+    flex-direction: column;
+  }
+
+  .button--primary {
+    width: 100%;
+  }
+
+  .todo-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .todo-item__actions {
+    justify-content: flex-end;
+  }
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="todo-app">
+      <header class="todo-app__header">
+        <div>
+          <h1 class="todo-app__title">Minha lista</h1>
+          <p class="todo-app__subtitle">Organize seu dia com clareza e foco.</p>
+        </div>
+        <div class="todo-app__counter" aria-label="Contador de tarefas">5 tarefas</div>
+      </header>
+
+      <section class="todo-app__create" aria-label="Adicionar nova tarefa">
+        <form class="todo-form" action="#" method="post">
+          <label class="todo-form__label" for="new-task">Nova tarefa</label>
+          <div class="todo-form__controls">
+            <input
+              class="todo-form__input"
+              type="text"
+              id="new-task"
+              name="new-task"
+              placeholder="Digite sua próxima tarefa..."
+              autocomplete="off"
+            />
+            <button class="button button--primary" type="submit">Adicionar</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="todo-app__list-section" aria-label="Lista de tarefas">
+        <ul class="todo-list">
+          <li class="todo-item">
+            <p class="todo-item__text">Açucar</p>
+            <div class="todo-item__actions">
+              <button class="button button--success" type="button">Concluir</button>
+              <button class="button button--danger" type="button">Deletar</button>
+            </div>
+          </li>
+
+          <li class="todo-item completed">
+            <p class="todo-item__text">Pão</p>
+            <div class="todo-item__actions">
+              <button class="button button--success" type="button">Concluir</button>
+              <button class="button button--danger" type="button">Deletar</button>
+            </div>
+          </li>
+
+          <li class="todo-item">
+            <p class="todo-item__text">Contra-filé</p>
+            <div class="todo-item__actions">
+              <button class="button button--success" type="button">Concluir</button>
+              <button class="button button--danger" type="button">Deletar</button>
+            </div>
+          </li>
+
+          <li class="todo-item">
+            <p class="todo-item__text">Vinho tinto seco</p>
+            <div class="todo-item__actions">
+              <button class="button button--success" type="button">Concluir</button>
+              <button class="button button--danger" type="button">Deletar</button>
+            </div>
+          </li>
+
+          <li class="todo-item">
+            <p class="todo-item__text">Pizza de calabresa</p>
+            <div class="todo-item__actions">
+              <button class="button button--success" type="button">Concluir</button>
+              <button class="button button--danger" type="button">Deletar</button>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
