@@ -2,12 +2,56 @@ const form = document.querySelector('.todo-form');
 const input = document.querySelector('.todo-form__input');
 const list = document.querySelector('.todo-list');
 const counter = document.querySelector('.todo-app__counter');
+const filterButtons = document.querySelectorAll('.filter-button');
+const themeToggle = document.querySelector('#theme-toggle');
+const themeLabel = document.querySelector('.theme-switch__label');
+const root = document.documentElement;
+
+const THEME_STORAGE_KEY = 'shopping-list-theme';
+let currentFilter = 'all';
+
+function applyTheme(theme) {
+  const isLight = theme === 'light';
+
+  root.setAttribute('data-theme', isLight ? 'light' : 'dark');
+  themeToggle.checked = isLight;
+  themeLabel.textContent = isLight ? 'Light' : 'Dark';
+}
+
+function initializeTheme() {
+  const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+  applyTheme(savedTheme === 'light' ? 'light' : 'dark');
+}
 
 function updateCounter() {
   const totalTasks = list.querySelectorAll('.todo-item').length;
   const pendingTasks = list.querySelectorAll('.todo-item:not(.completed)').length;
 
-  counter.textContent = `${pendingTasks} tarefa${pendingTasks === 1 ? '' : 's'} pendente${pendingTasks === 1 ? '' : 's'} / ${totalTasks} total`;
+  counter.textContent = `${pendingTasks} item${pendingTasks === 1 ? '' : 'ns'} pendente${pendingTasks === 1 ? '' : 's'} / ${totalTasks} no total`;
+}
+
+function applyFilter() {
+  const items = list.querySelectorAll('.todo-item');
+
+  items.forEach((item) => {
+    const isCompleted = item.classList.contains('completed');
+    const shouldShow =
+      currentFilter === 'all' ||
+      (currentFilter === 'completed' && isCompleted) ||
+      (currentFilter === 'pending' && !isCompleted);
+
+    item.hidden = !shouldShow;
+  });
+}
+
+function setFilter(filter) {
+  currentFilter = filter;
+
+  filterButtons.forEach((button) => {
+    button.classList.toggle('is-active', button.dataset.filter === filter);
+  });
+
+  applyFilter();
 }
 
 function createTaskItem(taskText) {
@@ -52,6 +96,7 @@ form.addEventListener('submit', (event) => {
   input.value = '';
   input.focus();
   updateCounter();
+  applyFilter();
 });
 
 list.addEventListener('click', (event) => {
@@ -66,12 +111,28 @@ list.addEventListener('click', (event) => {
   if (button.classList.contains('button--success')) {
     taskItem.classList.toggle('completed');
     updateCounter();
+    applyFilter();
   }
 
   if (button.classList.contains('button--danger')) {
     taskItem.remove();
     updateCounter();
+    applyFilter();
   }
 });
 
+filterButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    setFilter(button.dataset.filter);
+  });
+});
+
+themeToggle.addEventListener('change', () => {
+  const theme = themeToggle.checked ? 'light' : 'dark';
+  applyTheme(theme);
+  localStorage.setItem(THEME_STORAGE_KEY, theme);
+});
+
+initializeTheme();
 updateCounter();
+setFilter('all');

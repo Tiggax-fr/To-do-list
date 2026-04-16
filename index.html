@@ -1,31 +1,38 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To-Do List</title>
+    <title>Lista de Compras de Roupas</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <main class="todo-app">
       <header class="todo-app__header">
         <div>
-          <h1 class="todo-app__title">Minha lista</h1>
-          <p class="todo-app__subtitle">Organize seu dia com clareza e foco.</p>
+          <h1 class="todo-app__title">Minha lista de compras de roupas</h1>
+          <p class="todo-app__subtitle">Planeje suas peças com estilo e praticidade.</p>
         </div>
-        <div class="todo-app__counter" aria-label="Contador de tarefas">5 tarefas</div>
+        <div class="todo-app__header-actions">
+          <label class="theme-switch" for="theme-toggle" aria-label="Alternar tema escuro e claro">
+            <input class="theme-switch__input" type="checkbox" id="theme-toggle" />
+            <span class="theme-switch__slider"></span>
+            <span class="theme-switch__label">Dark</span>
+          </label>
+          <div class="todo-app__counter" aria-label="Contador de itens">5 itens</div>
+        </div>
       </header>
 
-      <section class="todo-app__create" aria-label="Adicionar nova tarefa">
+      <section class="todo-app__create" aria-label="Adicionar novo item de roupa">
         <form class="todo-form" action="#" method="post">
-          <label class="todo-form__label" for="new-task">Nova tarefa</label>
+          <label class="todo-form__label" for="new-task">Nova peça</label>
           <div class="todo-form__controls">
             <input
               class="todo-form__input"
               type="text"
               id="new-task"
               name="new-task"
-              placeholder="Digite sua próxima tarefa..."
+              placeholder="Digite a peça que deseja comprar..."
               autocomplete="off"
             />
             <button class="button button--primary" type="submit">Adicionar</button>
@@ -33,10 +40,16 @@
         </form>
       </section>
 
-      <section class="todo-app__list-section" aria-label="Lista de tarefas">
+      <section class="todo-app__filters" aria-label="Filtrar itens da lista">
+        <button class="filter-button is-active" type="button" data-filter="all">Todos</button>
+        <button class="filter-button" type="button" data-filter="completed">Concluídas</button>
+        <button class="filter-button" type="button" data-filter="pending">Não concluídas</button>
+      </section>
+
+      <section class="todo-app__list-section" aria-label="Lista de compras de roupas">
         <ul class="todo-list">
           <li class="todo-item">
-            <p class="todo-item__text">Açucar</p>
+            <p class="todo-item__text">Camiseta básica preta</p>
             <div class="todo-item__actions">
               <button class="button button--success" type="button">Concluir</button>
               <button class="button button--danger" type="button">Deletar</button>
@@ -44,7 +57,7 @@
           </li>
 
           <li class="todo-item completed">
-            <p class="todo-item__text">Pão</p>
+            <p class="todo-item__text">Calça jeans escura</p>
             <div class="todo-item__actions">
               <button class="button button--success" type="button">Concluir</button>
               <button class="button button--danger" type="button">Deletar</button>
@@ -52,7 +65,7 @@
           </li>
 
           <li class="todo-item">
-            <p class="todo-item__text">Contra-filé</p>
+            <p class="todo-item__text">Jaqueta de couro</p>
             <div class="todo-item__actions">
               <button class="button button--success" type="button">Concluir</button>
               <button class="button button--danger" type="button">Deletar</button>
@@ -60,7 +73,7 @@
           </li>
 
           <li class="todo-item">
-            <p class="todo-item__text">Vinho tinto seco</p>
+            <p class="todo-item__text">Vestido marsala</p>
             <div class="todo-item__actions">
               <button class="button button--success" type="button">Concluir</button>
               <button class="button button--danger" type="button">Deletar</button>
@@ -68,7 +81,7 @@
           </li>
 
           <li class="todo-item">
-            <p class="todo-item__text">Pizza de calabresa</p>
+            <p class="todo-item__text">Tênis casual preto</p>
             <div class="todo-item__actions">
               <button class="button button--success" type="button">Concluir</button>
               <button class="button button--danger" type="button">Deletar</button>
